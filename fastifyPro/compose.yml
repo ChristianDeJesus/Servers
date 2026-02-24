@@ -1,0 +1,20 @@
+services:
+  appFastify:
+    build: .
+    ports:
+      - "${PUERTO_Fast}:${PUERTO_Fast}"
+    environment:
+      - MSG_WELC_Fast=${MSG_WELC_Fast}
+      - PUERTO_Fast=${PUERTO_Fast}
+      - HOST_Fast=${HOST_Fast}
+    env_file:
+      - .env      
+    volumes:
+      - .:/app    
+      - /app/node_modules 
+    networks:
+      - fastify-net
+
+networks:
+  fastify-net:
+    driver: bridge
